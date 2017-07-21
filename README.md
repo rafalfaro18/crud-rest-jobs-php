@@ -25,6 +25,8 @@ Instrucciones:
 
 11. Permitir acceso en el firewall.
 
-12. Navegar a localhost/index.php
+12. Descomprimir el proyecto https://github.com/rafalfaro18/crud-rest-jobs-php/archive/master.zip en C:\xampp\htdocs\
+
+13. Navegar a localhost/crud-rest-jobs-php/index.php
 
 
