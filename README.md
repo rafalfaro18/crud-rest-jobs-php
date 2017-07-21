@@ -38,9 +38,9 @@ Instrucciones:
 
 13. Abrir cmd y ejecutar: C:\mongodb\bin\mongo.exe
 
-  13.1 Probar a insertar ejecutando: db.test.save({a:1}); db.test.find();
+  13.1 Probar a insertar documentos ejecutando: db.test.save({a:1}); db.test.find();
 
-  13.2 Eliminar ejecutando: db.test.remove()
+  13.2 Eliminar documento de prueba ejecutando: db.test.remove()
 
 
 14. Descomprimir el proyecto https://github.com/rafalfaro18/crud-rest-jobs-php/archive/master.zip en C:\xampp\htdocs\
