@@ -45,6 +45,8 @@ Instrucciones:
 
 14. Descomprimir el proyecto https://github.com/rafalfaro18/crud-rest-jobs-php/archive/master.zip en C:\xampp\htdocs\
 
-15. Navegar a localhost/crud-rest-jobs-php/index.php
+15. Navegar a http://localhost/crud-rest-jobs-php/test.php para probar la conexion a la base de datos.
+
+
 
 
