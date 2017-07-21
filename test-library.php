@@ -1,5 +1,9 @@
 <?php
 require_once __DIR__ . "/vendor/autoload.php";
-$client = new MongoDB\Client("mongodb://localhost:27017");
-var_dump($client);
+
+$database = (new MongoDB\Client)->test;
+
+$cursor = $database->command(['ping' => 1]);
+echo "<br>";
+var_dump($cursor->toArray()[0]);
 ?>
