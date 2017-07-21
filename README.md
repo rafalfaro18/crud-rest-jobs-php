@@ -25,6 +25,6 @@ Instrucciones:
 
 11. Permitir acceso en el firewall.
 
-12. Abrir navegar a localhost/index.php
+12. Navegar a localhost/index.php
 
 
