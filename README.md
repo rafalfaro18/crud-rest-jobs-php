@@ -47,6 +47,12 @@ Instrucciones:
 
 15. Navegar a http://localhost/crud-rest-jobs-php/test.php para probar la conexion a la base de datos.
 
-16. Instalar composer
+16. Instalar composer https://getcomposer.org/Composer-Setup.exe
+
+17. Con composer instalar la librería PHP MongoDB PHPLIB en la carpeta del proyecto: cd C:\xampp\htdocs\crud-rest-jobs-php && composer require mongodb/mongodb
+
+18. Navegar a http://localhost/crud-rest-jobs-php/test-library.php para probar la conexion a la base de datos usando la libreria.
+
+
 
 
