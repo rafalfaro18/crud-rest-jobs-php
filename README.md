@@ -28,16 +28,23 @@ Instrucciones:
 
 7. Instalar MongoDB para Windows (https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.4.6-signed.msi) en la carpeta C:\
 
-8. Crear la carpeta C:\data
+9. Permitir acceso en el firewall.
 
-9. Crear la carpeta C:\data\db
+10. Crear la carpeta C:\data
 
-10. Abrir cmd y ejecutar: C:\mongodb\bin\mongod.exe
+11. Crear la carpeta C:\data\db
 
-11. Permitir acceso en el firewall.
+12. Abrir cmd y ejecutar: C:\mongodb\bin\mongod.exe
 
-12. Descomprimir el proyecto https://github.com/rafalfaro18/crud-rest-jobs-php/archive/master.zip en C:\xampp\htdocs\
+13. Abrir cmd y ejecutar: C:\mongodb\bin\mongo.exe
 
-13. Navegar a localhost/crud-rest-jobs-php/index.php
+  13.1 Probar a insertar ejecutando: db.test.save({a:1}); db.test.find();
+
+  13.2 Eliminar ejecutando: db.test.remove()
+
+
+14. Descomprimir el proyecto https://github.com/rafalfaro18/crud-rest-jobs-php/archive/master.zip en C:\xampp\htdocs\
+
+15. Navegar a localhost/crud-rest-jobs-php/index.php
 
 
