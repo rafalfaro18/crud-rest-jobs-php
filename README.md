@@ -47,6 +47,6 @@ Instrucciones:
 
 15. Navegar a http://localhost/crud-rest-jobs-php/test.php para probar la conexion a la base de datos.
 
-
+16. Instalar composer
 
 
