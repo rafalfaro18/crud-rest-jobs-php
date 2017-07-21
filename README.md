@@ -1,6 +1,17 @@
 # crud-rest-jobs-php
 CRUD Rest Jobs MongoDB PHP Angular
 
+Requerimientos:
+
++ Create a RESTful API using PHP. This API will expose CRUD operations for the following entities: candidate, resume, job position. Columns one each entity are up to you
+
++ Connect a MongoDB database to the API server for querying and persisting data
+
++ Create an admin web app using Angular, that will consume the API and create listing, add and edit pages for each data entity mentioned above
+
++ Desirable but not required: user authentication. Please add a readme file on the root of both projects with instructions on how to run it.
+
+
 Instrucciones:
 
 1. Instalar XAMPP 7.1.7 en Windows en la carpeta C:\xampp
