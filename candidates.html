@@ -8,11 +8,12 @@
 
 	<body>
 		<div ng-controller="Hello">
-            
-				<select ng-change = "list();" ng-model = "series_selecter">
-	                    <option ng-repeat="data in customers" value="{{data._id.$oid}}">{{data.name}}</option>
-	            </select>
-		
+            <table class="table table-striped table-bordered">
+            	<tr ng-repeat="data in customers">
+		            <td>{{data._id.$oid}}</td>
+		            <td>{{data.name}}</td>
+	            </tr>
+			</table>
 		</div>
 	</body>
 </html>
