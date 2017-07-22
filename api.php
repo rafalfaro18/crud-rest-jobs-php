@@ -3,20 +3,31 @@ require_once __DIR__ . "/vendor/autoload.php";
 require_once __DIR__ . "/candidate.php";
 $client=new MongoDB\Client;
 //meter un if que haga ping else se sale con mensaje no se pudo conectar a la bd mongodb false
-$collection = $client->test->beers;
+$collection = $client->test->candidate;
 
 $arr=[];
 $arr['mongodb']=true;
 
-if($_SERVER['REQUEST_METHOD']==='POST'){//Acceso a la API
-$arr['action']=$_POST['action'];
+
+
+//if($_SERVER['REQUEST_METHOD']==='POST'){//Acceso a la API
+$x='';
+
+//if ($json_input) {
+ //   $_REQUEST = json_decode($json_input, true);
+ //   $x=$_REQUEST['action'];
+//}else{
+$x=$_POST['action'];
+
+//}
+
 /***********************Test***********************/
-if ($_POST['action'] == 'TEST'){
+if ($x == 'TEST'){
 $arr['msg']='Api Works';
 echo json_encode($arr);
 }
 /****************Insert Candidates******************/
-if ($_POST['action'] == 'ADD'){
+if ($x == 'ADD'){
 $collection = (new MongoDB\Client)->test->candidate;
 //verificar que no exist6a primero?
 $result = $collection->insertOne(new Candidate($_POST['nombre']));
@@ -26,7 +37,7 @@ $arr['msg']='Candidato insertado correctamente';
 echo json_encode($arr);
 }
 /****************Update Candidates by ID******************/
-if ($_POST['action'] == 'UPD'){
+if ($x == 'UPD'){
 $collection = (new MongoDB\Client)->test->candidate;
 //verificar que no exist6a primero?
 $result = $collection->updateOne(
@@ -39,7 +50,7 @@ $arr['msg']=$result->getMatchedCount().' Candidato actualizado';
 echo json_encode($arr);
 }
 /****************Delete Candidates by ID******************/
-if ($_POST['action'] == 'DEL'){
+if ($x == 'DEL'){
 $collection = (new MongoDB\Client)->test->candidate;
 //verificar que no exist6a primero?
 $result = $collection->deleteOne(
@@ -50,24 +61,24 @@ $arr['msg']=$result->getDeletedCount().' Candidato Eliminado';
 //var_dump($person);
 echo json_encode($arr);
 }
-/****************Delete Candidates by ID******************/
 
-//recorrer las filas de la tabla como $row, $data[]=$row.
-//Select $arr['response'] = $data
-
-if ($_POST['action'] == 'LEE'){
+/****************Read Candidates******************/
+if ($x == 'LEE'){
 $collection = (new MongoDB\Client)->test->candidate;
 $result = $collection->find();
-$arr['msg']='Candidatos Leidos';
+$arr['msg']='Candidatos Obtenidos';
 foreach ($result as $document) {
-   $data[]= $document;
+	$data[]=$document;
 }
-$arr['response'] = $data;
+$arr['response']=$data;
 echo json_encode($arr);
 }
 
+//recorrer las filas de la tabla como $row, $data[]=$row.
+//Select $arr['response'] = $data
+//}
+//recorrer las filas de la tabla como $row, $data[]=$row.
+//Select $arr['response'] = $data
+//}
 
-
-
-}
 ?>
