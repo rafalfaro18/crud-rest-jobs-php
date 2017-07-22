@@ -20,10 +20,10 @@ angular.module('demo', [])
 
     };
     $http.post('./api.php', Object.toparams(dataObj), config)
-        .then(function(response) {
-            $scope.dptos = response.data;
+        .then(function(data) {
+            $scope.customers = data.data.response;
             //x=response;
-            console.log(response);
+            console.log(data);
         });
 
 });

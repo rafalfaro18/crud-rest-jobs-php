@@ -8,7 +8,11 @@
 
 	<body>
 		<div ng-controller="Hello">
-			<select ng-model="candidate" ng-options="dpt._id as dpt.nombre for dpt in dptos"></select>
+            
+				<select ng-change = "list();" ng-model = "series_selecter">
+	                    <option ng-repeat="data in customers" value="{{data._id.$oid}}">{{data.name}}</option>
+	            </select>
+		
 		</div>
 	</body>
 </html>
