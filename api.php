@@ -9,16 +9,23 @@ $arr=[];
 $arr['mongodb']=true;
 
 if($_SERVER['REQUEST_METHOD']==='POST'){//Acceso a la API
-
+$arr['action']=$_POST['action'];
+/***********************Test***********************/
+if ($_POST['action'] == 'TEST'){
+$arr['msg']='Api Works';
+echo json_encode($arr);
+}
 /****************Insert Candidates******************/
-
+if ($_POST['action'] == 'ADD'){
 $collection = (new MongoDB\Client)->test->candidate;
+//verificar que no exist6a primero?
 $result = $collection->insertOne(new Candidate($_POST['nombre']));
 //$person = $collection->findOne(['_id' => $result->getInsertedId()]);
 $arr['msg']='Candidato insertado correctamente';
 //var_dump($person);
 echo json_encode($arr);
-/***************************************/
+}
+
 
 }
 ?>
