@@ -15,12 +15,12 @@ app.factory("services", ['$http', function($http) {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             };
-    var dataObj={
+    obj.getCustomers = function(){
+        var dataObj={
         action : 'LEE',
         nombre: 'Rafa',
 
-    };
-    obj.getCustomers = function(){
+        };
         return $http.post('./api.php', Object.toparams(dataObj), config);
     }
     return obj;   
