@@ -25,7 +25,31 @@ $arr['msg']='Candidato insertado correctamente';
 //var_dump($person);
 echo json_encode($arr);
 }
-
+/****************Update Candidates by ID******************/
+if ($_POST['action'] == 'UPD'){
+$collection = (new MongoDB\Client)->test->candidate;
+//verificar que no exist6a primero?
+$result = $collection->updateOne(
+    ['_id' => new MongoDB\BSON\ObjectID($_POST['id'])],
+    ['$set' => ['name' => $_POST['nombre']]]
+);
+//$person = $collection->findOne(['_id' => $result->getInsertedId()]);
+$arr['msg']=$result->getMatchedCount().' Candidato actualizado';
+//var_dump($person);
+echo json_encode($arr);
+}
+/****************Delete Candidates by ID******************/
+if ($_POST['action'] == 'DEL'){
+$collection = (new MongoDB\Client)->test->candidate;
+//verificar que no exist6a primero?
+$result = $collection->deleteOne(
+    ['_id' => new MongoDB\BSON\ObjectID($_POST['id']) ]
+);
+//$person = $collection->findOne(['_id' => $result->getInsertedId()]);
+$arr['msg']=$result->getDeletedCount().' Candidato Eliminado';
+//var_dump($person);
+echo json_encode($arr);
+}
 
 }
 ?>
