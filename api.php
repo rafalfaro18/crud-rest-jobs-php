@@ -50,6 +50,24 @@ $arr['msg']=$result->getDeletedCount().' Candidato Eliminado';
 //var_dump($person);
 echo json_encode($arr);
 }
+/****************Delete Candidates by ID******************/
+
+//recorrer las filas de la tabla como $row, $data[]=$row.
+//Select $arr['response'] = $data
+
+if ($_POST['action'] == 'LEE'){
+$collection = (new MongoDB\Client)->test->candidate;
+$result = $collection->find();
+$arr['msg']='Candidatos Leidos';
+foreach ($result as $document) {
+   $data[]= $document;
+}
+$arr['response'] = $data;
+echo json_encode($arr);
+}
+
+
+
 
 }
 ?>
