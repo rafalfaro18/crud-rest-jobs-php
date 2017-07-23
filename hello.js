@@ -32,6 +32,7 @@ app.factory("services", ['$http', function($http) {
 
     obj.delCustomers = function(newid){
         var dataObj={
+        action: 'DEL',
         id : newid,
         };
         return $http.post('./api.php', Object.toparams(dataObj), config);
@@ -48,7 +49,7 @@ app.controller('listCtrl', function ($scope, services) {
 });
 
 app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams, services, customer) {
-    var customerID = ($routeParams.customerID) ? parseInt($routeParams.customerID) : 0;
+    var customerID = $routeParams.customerID;
    
       var original = customer.data;
       original._id = customerID;
@@ -62,7 +63,7 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
       $scope.deleteCustomer = function(customer) {
         $location.path('/');
         if(confirm("Are you sure to delete customer number: "+$scope.customer._id)==true)
-        services.deleteCustomer(customer.customerNumber);
+        services.delCustomers($scope.customer._id);
       };
 });
 
@@ -83,7 +84,17 @@ app.config(['$routeProvider', function($routeProvider) {
         resolve: {
           customer: function(services, $route){
             var customerID = $route.current.params.customerID;
-            return services.getCustomer(customerID);/*Falta*/
+            return services.getCustomer(customerID);
+          }
+        }
+    })
+    .when("/delete-customer/:customerID", {
+        templateUrl : "edit-candidate.html",
+        controller: 'editCtrl',
+        resolve: {
+          customer: function(services, $route){
+            var customerID = $route.current.params.customerID;
+            return services.getCustomers(customerID);
           }
         }
     })
