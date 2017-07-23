@@ -55,4 +55,6 @@ Instrucciones:
 
 
 
+Notas:
 
++ Para eliminar un elemento debe ir a editar y hacer click en Delete.
