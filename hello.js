@@ -88,15 +88,5 @@ app.config(['$routeProvider', function($routeProvider) {
           }
         }
     })
-    .when("/delete-customer/:customerID", {
-        templateUrl : "edit-candidate.html",
-        controller: 'editCtrl',
-        resolve: {
-          customer: function(services, $route){
-            var customerID = $route.current.params.customerID;
-            return services.getCustomers(customerID);
-          }
-        }
-    })
 }]);
 
