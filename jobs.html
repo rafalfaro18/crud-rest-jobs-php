@@ -1,14 +1,14 @@
 <table class="table table-striped table-bordered">
 	<tr>
 		<th>Id</th>
-		<th>Nombre</th>
-		<th>Apellido</th>
+		<th>Puesto</th>
+		<th>Descripcion</th>
 		<th>Acciones</th>
 	</tr>
 	<tr ng-repeat="data in customers">
 		<td>{{data._id.$oid}}</td>
 		<td>{{data.name}}</td>
-		<td>{{data.lastname}}</td>
-		<td><a href="#!edit-customer/{{data._id.$oid}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit Customer</a></td>
+		<td>{{data.description}}</td>
+		<td><a href="#!edit-job/{{data._id.$oid}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit Job</a></td>
 	</tr>
 </table>
