@@ -30,7 +30,7 @@ echo json_encode($arr);
 if ($x == 'ADD'){
 $collection = (new MongoDB\Client)->test->candidate;
 //verificar que no exist6a primero?
-$result = $collection->insertOne(new Candidate($_POST['nombre']));
+$result = $collection->insertOne(['name'=>$_POST['nombre']]);
 //$person = $collection->findOne(['_id' => $result->getInsertedId()]);
 $arr['msg']='Candidato insertado correctamente';
 //var_dump($person);
