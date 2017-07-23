@@ -29,10 +29,11 @@
 
 <form role="form" name="myForm" class="form-horizontal">
 <div class="row">
-<div class= "form-group">
+<div class= "form-group" ng-class="{error: myForm.name.$invalid}">
     <label class= "col-md-2"> Name </label>
     <div class="col-md-4">
-    <input ng-model="customer.name" type= "text" class= "form-control" placeholder="Your name"/>
+    <input ng-model="customer.name" type= "text" class= "form-control" placeholder="Your name" required/>
+    <span ng-show="myForm.name.$dirty && myForm.name.$invalid" class="help-inline">Name Required</span>
 </div>
 
 <div class= "form-group">
@@ -40,6 +41,7 @@
     <div class="col-md-4">
     <a href="#/" class="btn">Cancel</a>
         <button ng-click="saveCustomer(customer);" 
+                 ng-disabled="isClean() || myForm.$invalid"
                 class="btn btn-primary">Guardar</button>
         <button ng-click="deleteCustomer(customer)"
                 ng-show="customer._id" class="btn btn-warning">Delete</button>
