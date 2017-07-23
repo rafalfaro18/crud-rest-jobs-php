@@ -96,13 +96,13 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
         services.delCustomers($scope.customer._id);
       };
 
-      $scope.saveCustomer = function(id,nombre) {
+      $scope.saveCustomer = function(customer) {
         $location.path('/');
         if (customerID != "0") {
-            services.updateCustomer(id, nombre);
+            services.updateCustomer(customer._id, customer.name);
         }
         else {
-            services.insertCustomer(nombre);
+            services.insertCustomer(customer.name);
         }
     };
 });
