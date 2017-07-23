@@ -26,7 +26,7 @@ echo json_encode($arr);
 if ($x == 'ADD'){
 $collection = (new MongoDB\Client)->test->candidate;
 //verificar que no exist6a primero?
-$result = $collection->insertOne(['name'=>$_POST['nombre']]);
+$result = $collection->insertOne(['name'=>$_POST['nombre'],'lastname'=>$_POST['apellido']]);
 //$person = $collection->findOne(['_id' => $result->getInsertedId()]);
 $arr['msg']='Candidato insertado correctamente';
 //var_dump($person);
@@ -38,7 +38,7 @@ $collection = (new MongoDB\Client)->test->candidate;
 //verificar que no exist6a primero?
 $result = $collection->updateOne(
     ['_id' => new MongoDB\BSON\ObjectID($_POST['id'])],
-    ['$set' => ['name' => $_POST['nombre']]]
+    ['$set' => ['name' => $_POST['nombre'],'lastname'=>$_POST['apellido']]]
 );
 //$person = $collection->findOne(['_id' => $result->getInsertedId()]);
 $arr['msg']=$result->getMatchedCount().' Candidato actualizado';

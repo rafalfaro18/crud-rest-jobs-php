@@ -38,20 +38,22 @@ app.factory("services", ['$http', function($http) {
         return $http.post('./api.php', Object.toparams(dataObj), config);
     };
 
-    obj.insertCustomer = function (newnombre) {
+    obj.insertCustomer = function (newnombre, newapellido) {
         var dataObj={
         action: 'ADD',
         nombre : newnombre,
+        apellido: newapellido,
         };
         return $http.post('./api.php', Object.toparams(dataObj), config).then(function (results) {
             return results;
         });
     };
 
-    obj.updateCustomer = function (newid,newnombre) {
+    obj.updateCustomer = function (newid,newnombre, newapellido) {
         var dataObj={
         action: 'UPD',
         id: newid,
+        apellido: newapellido,
         nombre : newnombre,
         };
         return $http.post('./api.php', Object.toparams(dataObj), config).then(function (status) {
@@ -99,10 +101,10 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
       $scope.saveCustomer = function(customer) {
         $location.path('/');
         if (customerID != "0") {
-            services.updateCustomer(customer._id, customer.name);
+            services.updateCustomer(customer._id, customer.name, customer.lastname);
         }
         else {
-            services.insertCustomer(customer.name);
+            services.insertCustomer(customer.name, customer.lastname);
         }
     };
 });
