@@ -10,16 +10,12 @@ $arr['mongodb']=true;
 
 
 
-//if($_SERVER['REQUEST_METHOD']==='POST'){//Acceso a la API
+if($_SERVER['REQUEST_METHOD']==='POST'){
 $x='';
 
-//if ($json_input) {
- //   $_REQUEST = json_decode($json_input, true);
- //   $x=$_REQUEST['action'];
-//}else{
 $x=$_POST['action'];
 
-//}
+
 
 /***********************Test***********************/
 if ($x == 'TEST'){
@@ -84,11 +80,6 @@ $arr['response']=$result;
 echo json_encode($arr);
 }
 
-//recorrer las filas de la tabla como $row, $data[]=$row.
-//Select $arr['response'] = $data
-//}
-//recorrer las filas de la tabla como $row, $data[]=$row.
-//Select $arr['response'] = $data
-//}
+}
 
 ?>
