@@ -20,7 +20,7 @@ app.factory("services", ['$http', function($http) {
         action : 'LEE',
         };
         return $http.post('./api.php', Object.toparams(dataObj), config);
-    }
+    };
 
     obj.getCustomer = function(customerID){
         var dataObj={
@@ -28,7 +28,7 @@ app.factory("services", ['$http', function($http) {
         id : customerID,
         };
         return $http.post('./api.php', Object.toparams(dataObj), config);
-    }
+    };
 
     obj.delCustomers = function(newid){
         var dataObj={
@@ -36,7 +36,28 @@ app.factory("services", ['$http', function($http) {
         id : newid,
         };
         return $http.post('./api.php', Object.toparams(dataObj), config);
-    }
+    };
+
+    obj.insertCustomer = function (newnombre) {
+        var dataObj={
+        action: 'ADD',
+        nombre : newnombre,
+        };
+        return $http.post('./api.php', Object.toparams(dataObj), config).then(function (results) {
+            return results;
+        });
+    };
+
+    obj.updateCustomer = function (newid,newnombre) {
+        var dataObj={
+        action: 'UPD',
+        id: newid,
+        nombre : newnombre,
+        };
+        return $http.post('./api.php', Object.toparams(dataObj), config).then(function (status) {
+            return status.data;
+        });
+    };
 
     return obj;   
 }]);
@@ -51,12 +72,19 @@ app.controller('listCtrl', function ($scope, services) {
 app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams, services, customer) {
     
     var customerID = $routeParams.customerID;
+    console.log(customerID);
        $rootScope.title = (customerID == "0") ? 'Add Customer' : 'Edit Customer';
         $scope.buttonText = (customerID == "0") ? 'Add New Customer' :  'Update Customer';
-      var original = customer.data;
-      original._id = customerID;
-      $scope.customer = angular.copy(original);
-      $scope.customer._id = customerID;
+      if(customerID!="0"){
+          var original = customer.data.response;
+          console.log(customer.data);
+          original._id = customerID;
+          $scope.customer = angular.copy(original);
+          $scope.customer._id = customerID;
+          console.log($scope.customer);
+      }else{
+         $scope.customer=null;
+      }
 
       $scope.isClean = function() {
         return angular.equals(original, $scope.customer);
@@ -67,6 +95,16 @@ app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams
         if(confirm("Are you sure to delete customer number: "+$scope.customer._id)==true)
         services.delCustomers($scope.customer._id);
       };
+
+      $scope.saveCustomer = function(id,nombre) {
+        $location.path('/');
+        if (customerID != "0") {
+            services.updateCustomer(id, nombre);
+        }
+        else {
+            services.insertCustomer(nombre);
+        }
+    };
 });
 
 
@@ -77,10 +115,12 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl : "main.html"
     })
     .when("/candidates", {
+        title: 'Candidates',
         templateUrl : "candidates.html",
         controller: 'listCtrl'
     })
     .when("/edit-customer/:customerID", {
+         title: 'Edit Candidates',
         templateUrl : "edit-candidate.html",
         controller: 'editCtrl',
         resolve: {
