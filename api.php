@@ -3,7 +3,7 @@ require_once __DIR__ . "/vendor/autoload.php";
 require_once __DIR__ . "/candidate.php";
 $client=new MongoDB\Client;
 //meter un if que haga ping else se sale con mensaje no se pudo conectar a la bd mongodb false
-$collection = $client->test->candidate;
+
 
 $arr=[];
 $arr['mongodb']=true;
@@ -14,14 +14,15 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 $x='';
 
 $x=$_POST['action'];
-
-
-
 /***********************Test***********************/
 if ($x == 'TEST'){
 $arr['msg']='Api Works';
 echo json_encode($arr);
 }
+
+/**********************Candidatos******************************************/
+
+
 /****************Insert Candidates******************/
 if ($x == 'ADD'){
 $collection = (new MongoDB\Client)->test->candidate;
@@ -76,6 +77,66 @@ $result = $collection->findOne(
     ['_id' => new MongoDB\BSON\ObjectID($_POST['id']) ]
 );
 $arr['msg']='Candidato Obtenido';
+$arr['response']=$result;
+echo json_encode($arr);
+}
+
+/*************Job*Positions***********************************/
+
+/****************Insert Jobs******************/
+if ($x == 'ADDPOS'){
+$collection = (new MongoDB\Client)->test->jobs;
+//verificar que no exist6a primero?
+$result = $collection->insertOne(['name'=>$_POST['nombre'],'description'=>$_POST['descripcion']]);
+//$person = $collection->findOne(['_id' => $result->getInsertedId()]);
+$arr['msg']='Puesto insertado correctamente';
+//var_dump($person);
+echo json_encode($arr);
+}
+/****************Update Jobs by ID******************/
+if ($x == 'UPDPOS'){
+$collection = (new MongoDB\Client)->test->jobs;
+//verificar que no exist6a primero?
+$result = $collection->updateOne(
+    ['_id' => new MongoDB\BSON\ObjectID($_POST['id'])],
+    ['$set' => ['name' => $_POST['nombre'],'description'=>$_POST['descripcion']]]
+);
+//$person = $collection->findOne(['_id' => $result->getInsertedId()]);
+$arr['msg']=$result->getMatchedCount().' Puesto actualizado';
+//var_dump($person);
+echo json_encode($arr);
+}
+/****************Delete Jobs by ID******************/
+if ($x == 'DELPOS'){
+$collection = (new MongoDB\Client)->test->jobs;
+//verificar que no exist6a primero?
+$result = $collection->deleteOne(
+    ['_id' => new MongoDB\BSON\ObjectID($_POST['id']) ]
+);
+//$person = $collection->findOne(['_id' => $result->getInsertedId()]);
+$arr['msg']=$result->getDeletedCount().' Puesto Eliminado';
+//var_dump($person);
+echo json_encode($arr);
+}
+
+/****************Read Jobs******************/
+if ($x == 'LEEPOS'){
+$collection = (new MongoDB\Client)->test->jobs;
+$result = $collection->find();
+$arr['msg']='Puesto Obtenidos';
+foreach ($result as $document) {
+	$data[]=$document;
+}
+$arr['response']=$data;
+echo json_encode($arr);
+}
+
+if ($x == 'LEEUNOPOS'){
+$collection = (new MongoDB\Client)->test->jobs;
+$result = $collection->findOne(
+    ['_id' => new MongoDB\BSON\ObjectID($_POST['id']) ]
+);
+$arr['msg']='Puesto Obtenido';
 $arr['response']=$result;
 echo json_encode($arr);
 }
