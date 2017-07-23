@@ -11,9 +11,9 @@
         <div class="row">
         <nav class= "navbar navbar-default" role= "navigation" >
         <div class= "navbar-header" >
-        <a class= "navbar-brand" href= "#!candidates"><i class="glyphicon glyphicon-th-large"></i> Customers List </a>
-        <a ng-show="customer._id" class= "navbar-brand" href= "#!edit-customer/0"><i class="glyphicon glyphicon-plus"></i> Create Customer </a>
-        <a ng-show="customer._id" class= "navbar-brand pull-right"><i class="glyphicon glyphicon-edit"></i> Currently Editing Customer Number: {{customer._id}}</a>
+        <a class= "navbar-brand" href= "#!candidates"><i class="glyphicon glyphicon-th-large"></i> Job List </a>
+        <a ng-show="customer._id" class= "navbar-brand" href= "#!edit-job/0"><i class="glyphicon glyphicon-plus"></i> Create Job </a>
+        <a ng-show="customer._id" class= "navbar-brand pull-right"><i class="glyphicon glyphicon-edit"></i> Currently Editing Job Number: {{customer._id}}</a>
         </div>
         </nav>
         <header>
@@ -30,21 +30,21 @@
     <span ng-show="myForm.name.$dirty && myForm.name.$invalid" class="help-inline">Name Required</span>
 </div>
 
-<div class= "form-group" ng-class="{error: myForm.lastname.$invalid}">
-    <label class= "col-md-2"> Last Name </label>
+<div class= "form-group" ng-class="{error: myForm.description.$invalid}">
+    <label class= "col-md-2"> Description </label>
     <div class="col-md-4">
-    <input name="lastname" ng-model="customer.lastname" type= "text" class= "form-control" placeholder="Your name" required/>
-    <span ng-show="myForm.lastname.$dirty && myForm.lastname.$invalid" class="help-inline">Last Name Required</span>
+    <input name="description" ng-model="customer.description" type= "text" class= "form-control" placeholder="Your name" required/>
+    <span ng-show="myForm.description.$dirty && myForm.description.$invalid" class="help-inline">Description Required</span>
 </div>
 
 <div class= "form-group">
     <label class= "col-md-2"></label>
     <div class="col-md-4">
     <a href="#/" class="btn">Cancel</a>
-        <button ng-click="saveCustomer(customer);" 
+        <button ng-click="saveJob(customer);" 
                  ng-disabled="isClean() || myForm.$invalid"
                 class="btn btn-primary">Guardar</button>
-        <button ng-click="deleteCustomer(customer)"
+        <button ng-click="deleteJob(customer)"
                 ng-show="customer._id" class="btn btn-warning">Delete</button>
     </div>
 </div>
