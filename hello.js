@@ -49,8 +49,10 @@ app.controller('listCtrl', function ($scope, services) {
 });
 
 app.controller('editCtrl', function ($scope, $rootScope, $location, $routeParams, services, customer) {
+    
     var customerID = $routeParams.customerID;
-   
+       $rootScope.title = (customerID == "0") ? 'Add Customer' : 'Edit Customer';
+        $scope.buttonText = (customerID == "0") ? 'Add New Customer' :  'Update Customer';
       var original = customer.data;
       original._id = customerID;
       $scope.customer = angular.copy(original);
