@@ -1,9 +1,10 @@
-<!-- <p>Status: {{customer.msg}}</p>
-<p>ID: {{customer.response._id.$oid}}</p>
-<p>Nombre: {{customer.response.name}}</p>
-<button ng-click="deleteCustomer(customer)" class="btn btn-warning">Delete</button> -->
+<!-- <p>ID: {{customer._id}}</p>
+<p>Nombre: {{customer.name}}</p>
+<button ng-click="deleteCustomer(customer)" class="btn btn-warning">Delete</button>  -->
 
-<style type="text/css">
+
+
+ <style type="text/css">
   .form-horizontal input.ng-invalid.ng-dirty {
     border-color: #FA787E;
   }
@@ -28,21 +29,18 @@
 
 <form role="form" name="myForm" class="form-horizontal">
 <div class="row">
-<div class= "form-group" ng-class="{error: myForm.name.$invalid}">
+<div class= "form-group">
     <label class= "col-md-2"> Name </label>
     <div class="col-md-4">
-    <input name="name" ng-model="customer.response.name" type= "text" class= "form-control" placeholder="Your name" required/>
-    <span ng-show="myForm.name.$dirty && myForm.name.$invalid" class="help-inline">Name Required</span>
-    </div>
+    <input ng-model="customer.name" type= "text" class= "form-control" placeholder="Your name"/>
 </div>
 
 <div class= "form-group">
     <label class= "col-md-2"></label>
     <div class="col-md-4">
     <a href="#/" class="btn">Cancel</a>
-        <button ng-click="saveCustomer(customer);" 
-                ng-disabled="isClean() || myForm.$invalid"
-                class="btn btn-primary">{{buttonText}}</button>
+        <button ng-click="saveCustomer(customer._id,customer.name);" 
+                class="btn btn-primary">Guardar</button>
         <button ng-click="deleteCustomer(customer)"
                 ng-show="customer._id" class="btn btn-warning">Delete</button>
     </div>
@@ -51,4 +49,4 @@
 </form>
         </div></div>
     </div>
-</div>
+</div> 
