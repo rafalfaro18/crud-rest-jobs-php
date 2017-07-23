@@ -1,3 +1,4 @@
 <p>Status: {{customer.msg}}</p>
-<p>ID: {{customer._id}}</p>
+<p>ID: {{customer.response._id.$oid}}</p>
 <p>Nombre: {{customer.response.name}}</p>
+<button ng-click="deleteCustomer(customer)" class="btn btn-warning">Delete</button>
