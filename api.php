@@ -74,6 +74,16 @@ $arr['response']=$data;
 echo json_encode($arr);
 }
 
+if ($x == 'LEEUNO'){
+$collection = (new MongoDB\Client)->test->candidate;
+$result = $collection->findOne(
+    ['_id' => new MongoDB\BSON\ObjectID($_POST['id']) ]
+);
+$arr['msg']='Candidato Obtenido';
+$arr['response']=$result;
+echo json_encode($arr);
+}
+
 //recorrer las filas de la tabla como $row, $data[]=$row.
 //Select $arr['response'] = $data
 //}
