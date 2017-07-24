@@ -27,7 +27,7 @@
     <label class= "col-md-2"> Id of Candidate</label>
     <div class="col-md-4">
     <!-- <input ng-model="customer.candidate.$oid" name="candidate" value="{{customer.candidate.$oid}}" type= "text" class= "form-control" placeholder="ID of Candidate" required/> -->
-    <select ng-model="customer.candidate" name="candidate" ng-options="data._id.$oid as data._id.$oid for data in testing track by customer.candidate.$oid">
+    <select ng-model="customer.candidate" name="candidate" ng-options="data._id.$oid as data._id.$oid for data in testing track by data._id.$oid">
     </select>
     <span ng-show="myForm.candidate.$dirty && myForm.candidate.$invalid" class="help-inline">ID of Candidate Candidate Required</span>
 </div>

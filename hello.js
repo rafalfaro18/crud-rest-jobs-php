@@ -296,7 +296,7 @@ app.controller('editCtrlRes', function ($scope, $rootScope, $location, $routePar
         }
         else {
             console.log(customer);
-            services.insertResume(customer.candidate.$oid, customer.experience);
+            services.insertResume(customer.candidate, customer.experience);
         }
     };
 });
