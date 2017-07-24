@@ -109,6 +109,56 @@ app.factory("services", ['$http', function($http) {
         });
     };
 
+    ///////////////////////////
+
+    obj.getResumes = function(){
+        var dataObj={
+        action : 'LEERES',
+        };
+        return $http.post('./api.php', Object.toparams(dataObj), config);
+    };
+
+    obj.getResume = function(customerID){
+        var dataObj={
+        action : 'LEEUNORES',
+        id : customerID,
+        };
+        return $http.post('./api.php', Object.toparams(dataObj), config);
+    };
+
+    obj.delResumes = function(newid){
+        var dataObj={
+        action: 'DELRES',
+        id : newid,
+        };
+        return $http.post('./api.php', Object.toparams(dataObj), config);
+    };
+
+    obj.insertResume = function (newcandidateid, newexperiencia) {
+        var dataObj={
+        action: 'ADDRES',
+        candidateid : newcandidateid,
+        experiencia: newexperiencia,
+        };
+        return $http.post('./api.php', Object.toparams(dataObj), config).then(function (results) {
+            console.log(results);
+            return results;
+        });
+    };
+
+    obj.updateResume = function (newid,newcandidateid, newexperiencia) {
+        var dataObj={
+        action: 'UPDRES',
+        id: newid,
+        experiencia: newexperiencia,
+        candidateid : newcandidateid,
+        };
+        return $http.post('./api.php', Object.toparams(dataObj), config).then(function (status) {
+            console.log(status.data);
+            return status.data;
+        });
+    };
+
     return obj;   
 }]);
 
@@ -196,6 +246,54 @@ app.controller('editCtrlPos', function ($scope, $rootScope, $location, $routePar
     };
 });
 
+///////////////////////////
+
+app.controller('listCtrlRes', function ($scope, services) {
+    services.getResumes().then(function(data){
+        console.log(data.data.response);
+        $scope.customers = data.data.response;
+    });
+});
+
+app.controller('editCtrlRes', function ($scope, $rootScope, $location, $routeParams, services, customer) {
+    
+    var customerID = $routeParams.customerID;
+       $rootScope.title = (customerID == "0") ? 'Add Resume' : 'Edit Resume';
+        $scope.buttonText = (customerID == "0") ? 'Add New Resume' :  'Update Resume';
+      if(customerID!="0"){
+          var original = customer.data.response;
+          original._id = customerID;
+          $scope.customer = angular.copy(original);
+          $scope.customer._id = customerID;
+      }else{
+         $scope.customer=null;
+      }
+
+      $scope.regex='/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i';
+
+      $scope.isClean = function() {
+        return angular.equals(original, $scope.customer);
+      }
+
+      $scope.deleteResume = function(customer) {
+        $location.path('/');
+        if(confirm("Are you sure to delete resume number: "+$scope.customer._id)==true)
+        services.delResumes($scope.customer._id);
+      };
+
+      $scope.saveResume = function(customer) {
+        $location.path('/');
+        if (customerID != "0") {
+            console.log(customer);
+            services.updateResume(customer._id, customer.candidate.$oid, customer.experience);
+        }
+        else {
+            console.log(customer);
+            services.insertResume(customer.candidate.$oid, customer.experience);
+        }
+    };
+});
+
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when("/", {
@@ -236,12 +334,12 @@ app.config(['$routeProvider', function($routeProvider) {
 
     .when("/resumes", {
         title: 'Resumes',
-        templateUrl : "jobs.html",
+        templateUrl : "resumes.html",
         controller: 'listCtrlRes'
     })
     .when("/edit-resume/:customerID", {
          title: 'Edit Resume',
-        templateUrl : "edit-jobs.html",
+        templateUrl : "edit-resumes.html",
         controller: 'editCtrlRes',
         resolve: {
           customer: function(services, $route){

@@ -11,9 +11,9 @@
         <div class="row">
         <nav class= "navbar navbar-default" role= "navigation" >
         <div class= "navbar-header" >
-        <a class= "navbar-brand" href= "#!candidates"><i class="glyphicon glyphicon-th-large"></i> Job List </a>
-        <a ng-show="customer._id" class= "navbar-brand" href= "#!edit-job/0"><i class="glyphicon glyphicon-plus"></i> Create Job </a>
-        <a ng-show="customer._id" class= "navbar-brand pull-right"><i class="glyphicon glyphicon-edit"></i> Currently Editing Job Number: {{customer._id}}</a>
+        <a class= "navbar-brand" href= "#!resumes"><i class="glyphicon glyphicon-th-large"></i> Resume List </a>
+        <a ng-show="customer._id" class= "navbar-brand" href= "#!edit-resume/0"><i class="glyphicon glyphicon-plus"></i> Create Resume </a>
+        <a ng-show="customer._id" class= "navbar-brand pull-right"><i class="glyphicon glyphicon-edit"></i> Currently Editing Resume Number: {{customer._id}}</a>
         </div>
         </nav>
         <header>
@@ -23,28 +23,28 @@
 
 <form role="form" name="myForm" class="form-horizontal">
 <div class="row">
-<div class= "form-group" ng-class="{error: myForm.name.$invalid}">
-    <label class= "col-md-2"> Name </label>
+<div class= "form-group" ng-class="{error: myForm.candidate.$invalid}">
+    <label class= "col-md-2"> Id of Candidate</label>
     <div class="col-md-4">
-    <input name="name" ng-model="customer.name" type= "text" class= "form-control" placeholder="Your name" required/>
-    <span ng-show="myForm.name.$dirty && myForm.name.$invalid" class="help-inline">Name Required</span>
+    <input ng-model="customer.candidate.$oid" name="candidate" value="{{customer.candidate.$oid}}" type= "text" class= "form-control" placeholder="ID of Candidate" required/>
+    <span ng-show="myForm.candidate.$dirty && myForm.candidate.$invalid" class="help-inline">ID of Candidate Candidate Required</span>
 </div>
 
-<div class= "form-group" ng-class="{error: myForm.description.$invalid}">
-    <label class= "col-md-2"> Description </label>
+<div class= "form-group" ng-class="{error: myForm.experience.$invalid}">
+    <label class= "col-md-2"> Experience </label>
     <div class="col-md-4">
-    <input name="description" ng-model="customer.description" type= "text" class= "form-control" placeholder="Your name" required/>
-    <span ng-show="myForm.description.$dirty && myForm.description.$invalid" class="help-inline">Description Required</span>
+    <input ng-model="customer.experience" name="experience" value="{{customer.experience}}" type= "text" class= "form-control" placeholder="Your Experience" required/>
+    <span ng-show="myForm.experience.$dirty && myForm.experience.$invalid" class="help-inline">Experience Required</span>
 </div>
 
 <div class= "form-group">
     <label class= "col-md-2"></label>
     <div class="col-md-4">
     <a href="#/" class="btn">Cancel</a>
-        <button ng-click="saveJob(customer);" 
-                 ng-disabled="isClean() || myForm.$invalid"
+        <button ng-click="saveResume(customer);" 
+                 ng-disabled="myForm.$invalid"
                 class="btn btn-primary">Guardar</button>
-        <button ng-click="deleteJob(customer)"
+        <button ng-click="deleteResume(customer)"
                 ng-show="customer._id" class="btn btn-warning">Delete</button>
     </div>
 </div>
