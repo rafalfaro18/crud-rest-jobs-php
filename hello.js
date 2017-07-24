@@ -271,6 +271,13 @@ app.controller('editCtrlRes', function ($scope, $rootScope, $location, $routePar
 
       $scope.regex='/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i';
 
+      
+      services.getCustomers().then(function(data){
+        $scope.testing = data.data.response;
+        console.log($scope.testing);
+        });
+
+
       $scope.isClean = function() {
         return angular.equals(original, $scope.customer);
       }
