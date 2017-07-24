@@ -207,7 +207,7 @@ app.config(['$routeProvider', function($routeProvider) {
         controller: 'listCtrl'
     })
     .when("/edit-customer/:customerID", {
-         title: 'Edit Candidates',
+         title: 'Edit Candidate',
         templateUrl : "edit-candidate.html",
         controller: 'editCtrl',
         resolve: {
@@ -223,7 +223,7 @@ app.config(['$routeProvider', function($routeProvider) {
         controller: 'listCtrlPos'
     })
     .when("/edit-job/:customerID", {
-         title: 'Edit Jobs',
+         title: 'Edit Job',
         templateUrl : "edit-jobs.html",
         controller: 'editCtrlPos',
         resolve: {
@@ -233,5 +233,23 @@ app.config(['$routeProvider', function($routeProvider) {
           }
         }
     })
+
+    .when("/resumes", {
+        title: 'Resumes',
+        templateUrl : "jobs.html",
+        controller: 'listCtrlRes'
+    })
+    .when("/edit-resume/:customerID", {
+         title: 'Edit Resume',
+        templateUrl : "edit-jobs.html",
+        controller: 'editCtrlRes',
+        resolve: {
+          customer: function(services, $route){
+            var customerID = $route.current.params.customerID;
+            return services.getResume(customerID);
+          }
+        }
+    })
+
 }]);
 
