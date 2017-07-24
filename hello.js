@@ -292,7 +292,7 @@ app.controller('editCtrlRes', function ($scope, $rootScope, $location, $routePar
         $location.path('/');
         if (customerID != "0") {
             console.log(customer);
-            services.updateResume(customer._id, customer.candidate.$oid, customer.experience);
+            services.updateResume(customer._id, customer.candidate, customer.experience);
         }
         else {
             console.log(customer);
