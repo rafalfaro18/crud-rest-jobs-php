@@ -12,7 +12,7 @@ Requerimientos:
 + Desirable but not required: user authentication. Please add a readme file on the root of both projects with instructions on how to run it.
 
 
-Instrucciones:
+Instrucciones de Instalacion:
 
 1. Instalar XAMPP 7.1.7 en Windows en la carpeta C:\xampp
 
@@ -43,18 +43,29 @@ Instrucciones:
   13.2 Eliminar documento de prueba ejecutando: db.test.remove()
 
 
-14. Descomprimir el proyecto https://github.com/rafalfaro18/crud-rest-jobs-php/archive/master.zip en C:\xampp\htdocs\
+14. Instalar composer https://getcomposer.org/Composer-Setup.exe
 
-15. Navegar a http://localhost/crud-rest-jobs-php/test.php para probar la conexion a la base de datos.
+15. Descomprimir el proyecto https://github.com/rafalfaro18/crud-rest-jobs-php/archive/master.zip en C:\xampp\htdocs\
 
-16. Instalar composer https://getcomposer.org/Composer-Setup.exe
+16. Navegar a http://localhost/crud-rest-jobs-php/test.php para probar la conexion a la base de datos. Debe decir Ok: 1
 
-17. Con composer instalar la librería PHP MongoDB PHPLIB en la carpeta del proyecto: cd C:\xampp\htdocs\crud-rest-jobs-php && composer require mongodb/mongodb
 
-18. Navegar a http://localhost/crud-rest-jobs-php/test-library.php para probar la conexion a la base de datos usando la libreria.
 
+Instrucciones de uso:
+
+1. Navegar a http://localhost/crud-rest-jobs-php/#!/
+2. Hacer click en ADD Candidate para añadir Candidatos.
+3. Hacer click en Candidates para ver Candidatos.
+  3.1 Dentro de la lista de Candidatos hacer click Edit para editar un Candidato.
+4. Hacer click en ADD Job para añadir Puestos.
+5. Hacer click en Jobs para ver Puestos.
+  5.1 Dentro de la lista de Puestos hacer click Edit para editar un Puesto.
+4. Hacer click en ADD Resume para añadir Curriculos. (Deben existir antes Candidatos)
+5. Hacer click en Resumes para ver Curriculos.
+  5.1 Dentro de la lista de Curriculos hacer click Edit para editar un Curriculos
 
 
 Notas:
 
 + Para eliminar un elemento debe ir a editar y hacer click en Delete.
++ No acceder a los archivos .html del proyecto directamente, usar la navegación de la aplicación.
