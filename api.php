@@ -149,12 +149,8 @@ if ($x == 'ADDRES'){
 $collection = (new MongoDB\Client)->test->resume;
 //verificar que no exist6a primero?
 $result = $collection->insertOne([
-	'candidate'=>[
-
-			'$ref'=>'candidate',
-			'$id' =>$_POST['candidateid']
-			
-	],'experience'=>$_POST['experiencia']]);
+	'candidate'=>$_POST['candidateid'],
+	'experience'=>$_POST['experiencia']]);
 //$person = $collection->findOne(['_id' => $result->getInsertedId()]);
 $arr['msg']='Resume insertado correctamente';
 //var_dump($person);
@@ -168,12 +164,8 @@ $collection = (new MongoDB\Client)->test->resume;
 $result = $collection->updateOne(
     ['_id' => new MongoDB\BSON\ObjectID($_POST['id'])],
     ['$set' => [
-    	'candidate'=>[
-
-			'$ref'=>'candidate',
-			'$id' =>$_POST['candidateid']
-			
-		],'experience'=>$_POST['experiencia']
+    	'candidate'=>$_POST['candidateid'],
+		'experience'=>$_POST['experiencia']
     ]]
 );
 $arr['msg']=$result->getMatchedCount().' Resume actualizado';
