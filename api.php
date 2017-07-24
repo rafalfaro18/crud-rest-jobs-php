@@ -141,6 +141,90 @@ $arr['response']=$result;
 echo json_encode($arr);
 }
 
+/************************RESUMES**********************************************/
+
+//INSERTA
+//db.resume.insertOne({"candidate" : { "$ref" : "candidate", "$id" : "5974640eebb5923358004d68" }, "experience" : "no" })
+if ($x == 'ADDRES'){
+$collection = (new MongoDB\Client)->test->resume;
+//verificar que no exist6a primero?
+$result = $collection->insertOne([
+	'candidate'=>[
+
+			'$ref'=>'candidate',
+			'$id' =>$_POST['candidateid']
+			
+	],'experience'=>$_POST['experiencia']]);
+//$person = $collection->findOne(['_id' => $result->getInsertedId()]);
+$arr['msg']='Resume insertado correctamente';
+//var_dump($person);
+echo json_encode($arr);
+}
+
+
+if ($x == 'UPDRES'){
+$collection = (new MongoDB\Client)->test->resume;
+//verificar que no exist6a primero?
+$result = $collection->updateOne(
+    ['_id' => new MongoDB\BSON\ObjectID($_POST['id'])],
+    ['$set' => [
+    	'candidate'=>[
+
+			'$ref'=>'candidate',
+			'$id' =>$_POST['candidateid']
+			
+		],'experience'=>$_POST['experiencia']
+    ]]
+);
+$arr['msg']=$result->getMatchedCount().' Resume actualizado';
+//var_dump($person);
+echo json_encode($arr);
+}
+
+if ($x == 'DELRES'){
+$collection = (new MongoDB\Client)->test->resume;
+$result = $collection->deleteOne(
+    ['_id' => new MongoDB\BSON\ObjectID($_POST['id']) ]
+);
+$arr['msg']=$result->getDeletedCount().' Resume Eliminado';
+echo json_encode($arr);
+}
+
+
+
+//LEE:
+//db.resume.aggregate([{$lookup:{from:'candidate', localField:'candidate.id', foreignField: 'id', as: 'candidate'}}])
+if ($x == 'LEERES'){
+$collection = (new MongoDB\Client)->test->resume;
+//$result = $collection->find();
+$result = $collection->aggregate([
+		['$lookup'=>
+			[
+				'from' => 'candidate',
+				'localField' => 'candidate.id',
+				'foreignField' => 'id',
+				'as' => 'candidate'
+			]
+		]
+	]);
+$arr['msg']='Resumes Obtenidos';
+foreach ($result as $document) {
+	$data[]=$document;
+}
+$arr['response']=$data;
+echo json_encode($arr);
+}
+
+if ($x == 'LEEUNORES'){
+$collection = (new MongoDB\Client)->test->resume;
+$result = $collection->findOne(
+    ['_id' => new MongoDB\BSON\ObjectID($_POST['id']) ]
+);
+$arr['msg']='Resume Obtenido';
+$arr['response']=$result;
+echo json_encode($arr);
+}
+
 }
 
 ?>
