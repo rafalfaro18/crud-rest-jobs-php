@@ -45,7 +45,7 @@ Instrucciones de Instalacion:
 
 14. Instalar composer https://getcomposer.org/Composer-Setup.exe
 
-15. Descomprimir el proyecto https://github.com/rafalfaro18/crud-rest-jobs-php/archive/master.zip en C:\xampp\htdocs\
+15. Descomprimir el proyecto https://github.com/rafalfaro18/crud-rest-jobs-php/archive/1.0.0.zip en C:\xampp\htdocs\
 
 16. Navegar a http://localhost/crud-rest-jobs-php/test.php para probar la conexion a la base de datos. Debe decir Ok: 1
 
