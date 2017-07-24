@@ -149,7 +149,7 @@ if ($x == 'ADDRES'){
 $collection = (new MongoDB\Client)->test->resume;
 //verificar que no exist6a primero?
 $result = $collection->insertOne([
-	'candidate'=>$_POST['candidateid'],
+	'candidate'=>new MongoDB\BSON\ObjectID($_POST['candidateid']),
 	'experience'=>$_POST['experiencia']]);
 //$person = $collection->findOne(['_id' => $result->getInsertedId()]);
 $arr['msg']='Resume insertado correctamente';
@@ -164,7 +164,7 @@ $collection = (new MongoDB\Client)->test->resume;
 $result = $collection->updateOne(
     ['_id' => new MongoDB\BSON\ObjectID($_POST['id'])],
     ['$set' => [
-    	'candidate'=>$_POST['candidateid'],
+    	'candidate'=>new MongoDB\BSON\ObjectID($_POST['candidateid']),
 		'experience'=>$_POST['experiencia']
     ]]
 );
@@ -193,8 +193,8 @@ $result = $collection->aggregate([
 		['$lookup'=>
 			[
 				'from' => 'candidate',
-				'localField' => 'candidate.id',
-				'foreignField' => 'id',
+				'localField' => 'candidate',
+				'foreignField' => '_id',
 				'as' => 'candidate'
 			]
 		]
